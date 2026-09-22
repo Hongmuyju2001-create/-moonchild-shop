@@ -348,17 +348,7 @@ button,input{
 
 <script>
 
-const products = [
-
-{
- name:"Mirror Knight Unicorn Pink",
- price:10.80,
- old:12.00,
- category:"Accessories",
- emoji:"🦄",
- discount:"10% OFF"
-},
-
+const defaultProducts = [
 {
  name:"Mirror Sweetie Bear Pink",
  price:10.80,
@@ -424,11 +414,13 @@ const products = [
 
 ];
 
+const savedProducts = JSON.parse(localStorage.getItem("moonchild_products") || "[]");
+const products = [...defaultProducts, ...savedProducts];
+
 let currentCategory="All";
 let cart=[];
 
 function render(list=products){
-
  const box=document.getElementById("products");
 
  if(list.length===0){
